@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.*;
 
 public class Main {
@@ -29,14 +30,33 @@ public class Main {
     public static List<String> prepareWords() throws FileNotFoundException {
         List<String> wordList = new ArrayList<>();
 
-        File dictionary = new File("resources/dictionary.txt");
+//        File dictionary = new File("resources/dictionary.txt");
+//
+//        Scanner fileScanner = new Scanner(dictionary);
+//
+//        while (fileScanner.hasNextLine()) {
+//            wordList.add(fileScanner.nextLine());
+//        }
+//
+//        return wordList;
 
-        Scanner fileScanner = new Scanner(dictionary);
 
-        while (fileScanner.hasNextLine()) {
-            wordList.add(fileScanner.nextLine());
+        // code die ik nog had geprobeerd gebaseerd op jou pointer:
+
+        try (InputStream inputStream = Main.class.getClassLoader()
+                .getResourceAsStream("resources/dictionary.txt")){
+            Scanner fileScanner = new Scanner(inputStream);
+
+            while (fileScanner.hasNextLine()) {
+                wordList.add(fileScanner.nextLine());
+            }
+
+            fileScanner.close();
+
+        } catch (Exception e) {
+            System.out.println("Wordlist not found, exiting game.");
+            System.exit(0);
         }
-
         return wordList;
     }
 
@@ -113,22 +133,5 @@ public class Main {
             gameOver = true;
         }
     }
-
-    // code die ik nog had geprobeerd gebaseerd op jou pointer:
-
-//    try (InputStream inputStream = Main.class.getClassLoader()
-//            .getResourceAsStream("resources/dictionary.txt")){
-//        Scanner fileScanner = new Scanner(inputStream);
-//
-//        while (fileScanner.hasNextLine()) {
-//            wordList.add(fileScanner.nextLine());
-//        }
-//
-//        fileScanner.close();
-//
-//    } catch (Exception e) {
-//        System.out.println("Wordlist not found, exiting game.");
-//        System.exit(0);
-//    }
 
 }
