@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.*;
@@ -13,35 +12,22 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-    List<String> wordList = prepareWords();
-    wordToGuess = prepareWordToGuess(wordList);
+        List<String> wordList = prepareWords();
+        wordToGuess = prepareWordToGuess(wordList);
 
-    while (!gameOver) {
-        printWordProgress();
-        printGuessedLetterList();
-        printCurrentLives();
-        getPlayerInput();
-        gameLost();
-    }
+        while (!gameOver) {
+            printWordProgress();
+            printGuessedLetterList();
+            printCurrentLives();
+            getPlayerInput();
+            gameLost();
+        }
 
     }
 
     // Import external file and prepare list of words to pick from
-    public static List<String> prepareWords() throws FileNotFoundException {
+    public static List<String> prepareWords() {
         List<String> wordList = new ArrayList<>();
-
-//        File dictionary = new File("resources/dictionary.txt");
-//
-//        Scanner fileScanner = new Scanner(dictionary);
-//
-//        while (fileScanner.hasNextLine()) {
-//            wordList.add(fileScanner.nextLine());
-//        }
-//
-//        return wordList;
-
-
-        // code die ik nog had geprobeerd gebaseerd op jou pointer:
 
         try (InputStream inputStream = Main.class.getClassLoader()
                 .getResourceAsStream("resources/dictionary.txt")){
