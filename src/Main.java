@@ -4,10 +4,10 @@ import java.util.*;
 
 public class Main {
 
-    private static String wordToGuess;
-    private static int lives = 10;
-    private static boolean gameOver = false;
-    private static final List<Character> playerGuesses = new ArrayList<>();
+    protected static String wordToGuess;
+    protected static int lives = 10;
+    protected static boolean gameOver = false;
+    protected static final List<Character> playerGuesses = new ArrayList<>();
 
 
     public static void main(String[] args) throws FileNotFoundException {
